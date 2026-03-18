@@ -2,7 +2,7 @@
 # exit on error
 set -o errexit
 
-pip install -r requirements.txt
+pip install -r DJANGO_COURSE_SITE/requirements.txt
 
-python manage.py collectstatic --no-input
-python manage.py migrate
+python DJANGO_COURSE_SITE/manage.py collectstatic --no-input
+python  DJANGO_COURSE_SITE/manage.py migrate
