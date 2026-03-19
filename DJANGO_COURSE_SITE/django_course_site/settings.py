@@ -27,9 +27,7 @@ SECRET_KEY = 'django-insecure-&-@j=*^yd5r!q1m5v-gd()c(_w7f_j_(n_$g5!oqxuou81=_)*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-course-project.onrender.com',
-                'localhost',
-                '127.0.0.1']
+ALLOWED_HOSTS = ['.onrender.com']
 
 
 # Application definition
@@ -79,11 +77,8 @@ WSGI_APPLICATION = 'django_course_site.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f'sqlite:///{os.path.join(BASE_DIR, "db.sqlite3")}',
-        conn_max_age=600
-    )
-}
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    }
 
 
 # Password validation
@@ -121,6 +116,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR/'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL =  '/files/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
